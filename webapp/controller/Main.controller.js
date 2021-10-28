@@ -9,7 +9,7 @@ sap.ui.define([
 
 		return Controller.extend("com.isuzu.zmmsayimyonet.controller.Main", {
 			onInit: function () {
-
+				//Hello
 			}
 		});
 	});
