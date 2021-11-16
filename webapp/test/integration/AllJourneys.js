@@ -7,7 +7,7 @@ sap.ui.define([
 
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "com.isuzu.zmmsayimyonet.view.",
+		viewNamespace: "com.isuzi.zmm_sayim_yonet.view.",
 		autoWait: true
 	});
 });

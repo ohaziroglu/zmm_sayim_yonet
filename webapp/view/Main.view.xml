@@ -1,16 +1,218 @@
-<mvc:View
-    controllerName="com.isuzu.zmmsayimyonet.controller.Main"
-    xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
-    xmlns="sap.m"
->
-	<Shell id="shell">
-		<App id="app">
-			<pages>
-				<Page id="page" title="{i18n>title}">
-					<content />
-				</Page>
-			</pages>
-		</App>
-	</Shell>
+<mvc:View controllerName="com.isuzi.zmm_sayim_yonet.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%"
+	xmlns:l="sap.ui.layout">
+	<App>
+		<pages>
+			<Page showHeader="true" enableScrolling="true" class="sapUiContentPadding" showNavButton="false">
+				<headerContent>
+					<OverflowToolbar id="otb6">
+						<ToolbarSpacer/>
+						<Button text="{i18n>MATERIAL_ADD}" type="Transparent" press="onGetMaterialList" visible="{mainModel>/materialAddVisible}"/>
+						<ToolbarSeparator>
+							<layoutData>
+								<OverflowToolbarLayoutData group="2"/>
+							</layoutData>
+						</ToolbarSeparator>
+						<Button icon="sap-icon://refresh" tooltip="{i18n>MATERIAL_REFRESH}" type="Emphasized" press="onRefreshData"/>
+					</OverflowToolbar>
+				</headerContent>
+				<content>
+					<IconTabBar id="id_IconTabBar" upperCase="true" expandable="false" applyContentPadding="true" select="handleIconTabBarSelect"
+						stretchContentHeight="true" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter icon="sap-icon://begin" iconColor="Positive" design="Horizontal" count="{mainModel>/materialListCount}"
+								text="{i18n>MATERIAL_LIST}" key="MaterialSelectionScreen">
+								<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+									<Table id="id_materialList" items="{mainModel>/materialList}" mode="MultiSelect">
+										<columns>
+											<Column width="20em">
+												<Text text="{i18n>MATERIAL}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>LINE_PRESS}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>VEHICLE_MODEL}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>MATERIAL_ADDRESS}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text=""/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<ObjectIdentifier title="{mainModel>MalzemeNumarasi}" text="{mainModel>MalzemeTanimi}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>MalzemeAdresi}"/>
+													<Button icon="sap-icon://sys-cancel" tooltip="{i18n>DELETE}" type="Transparent" press="onDeleteRow"
+														visible="{= ${mainModel>isDelete} === 'X' ? true : false}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+							</IconTabFilter>
+							<IconTabSeparator icon="sap-icon://open-command-field"/>
+							<IconTabFilter icon="sap-icon://cart-approval" iconColor="Critical" design="Horizontal" text="{i18n>COMPLETE_APPROVE}"
+								key="ManageApproveScreen">
+								<Table id="id_materialListApprove" items="{mainModel>/approveMaterialList}" mode="MultiSelect">
+									<columns>
+										<Column width="20em">
+											<Text text="{i18n>MATERIAL}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+											<Text text="{i18n>QUANTITY}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+											<Text text="{i18n>AMOUNT_USAGE}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+											<Text text="{i18n>LAST_SASE}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+											<Text text="{i18n>LINE_PRESS}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+											<Text text="{i18n>COUNT_DIFFERENCE}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+											<Text text="{i18n>DIFFERENCE_TOTAL}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+											<Text text="{i18n>VEHICLE_MODEL}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+											<Text text="{i18n>MATERIAL_ADDRESS}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Begin" demandPopin="true">
+											<Text text="{i18n>NOTE}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="End">
+											<Text text=""/>
+										</Column>
+										<!--<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">-->
+										<!--	<Text text="{i18n>NOTES}"/>-->
+										<!--</Column>-->
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<ObjectIdentifier title="{mainModel>MalzemeNumarasi}" text="{mainModel>MalzemeTanimi}"/>
+												<Text text="{mainModel>Sayac}"/>
+												<Text text="{mainModel>Sayac}"/>
+												<Text text="{mainModel>Sayac}"/>
+												<!--<TextArea value="{mainModel>notes}"/>-->
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://list" iconColor="Positive" design="Horizontal" count="{mainModel>/materialListCount}"
+								text="{i18n>MATERIAL_REPORT}" key="ReportListScreen">
+								<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+									<Table id="id_materialListAccepted"
+										items="{path:'mainModel>/materialListReport', filters: [{ path: 'Statu', operator: 'EQ', value1: '03'}]}" mode="None">
+										<columns>
+											<Column width="20em">
+												<Text text="{i18n>MATERIAL}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+												<Text text="{i18n>QUANTITY}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+												<Text text="{i18n>AMOUNT_USAGE}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>LAST_SASE}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>LINE_PRESS}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>COUNT_DIFFERENCE}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>DIFFERENCE_TOTAL}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>VEHICLE_MODEL}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>MATERIAL_ADDRESS}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Begin" demandPopin="true">
+												<Text text="{i18n>NOTE}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="End">
+												<Text text=""/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<ObjectIdentifier title="{mainModel>MalzemeNumarasi}" text="{mainModel>MalzemeTanimi}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Button icon="sap-icon://sys-cancel" tooltip="{i18n>DELETE}" type="Transparent" press="onDeleteRow"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://begin" iconColor="Positive" design="Horizontal" count="{mainModel>/materialListCount}"
+								text="{i18n>MATERIAL_COUNT_LIST}" key="MaterialCountScreen">
+								<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+									<Table id="id_materialCountList" items="{mainModel>/materialCountList}" mode="None">
+										<columns>
+											<Column width="20em">
+												<Text text="{i18n>MATERIAL}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>LINE_PRESS}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>VEHICLE_MODEL}"/>
+											</Column>
+											<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+												<Text text="{i18n>MATERIAL_ADDRESS}"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<ObjectIdentifier title="{mainModel>MalzemeNumarasi}" text="{mainModel>MalzemeTanimi}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>Sayac}"/>
+													<Text text="{mainModel>MalzemeAdresi}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+				<footer>
+					<OverflowToolbar id="otbFooter">
+						<ToolbarSpacer/>
+						<Button type="Emphasized" text="{i18n>SEND_COUNT}" visible="{mainModel>/sendCountButton}" press="onManageApprove"/>
+						<Button id="id_AcceptButton" type="Accept" text="{i18n>ACCEPT}" visible="{mainModel>/approveButton}" press="onManageApprove"/>
+						<!--<Button id="id_RejectButton" type="Reject" text="{i18n>REJECT}" visible="{mainModel>/rejectButton}" press="onManageApprove"/>-->
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
 </mvc:View>

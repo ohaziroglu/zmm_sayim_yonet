@@ -9,8 +9,8 @@ server:
     configuration:
       ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
       backend:
-      - path: /sap/opu/odata
-        url: http://localhost
+      - path: /sap
+        url: http://ssisufiod081:8000
       ui5:
         path: 
         - /resources
@@ -22,3 +22,4 @@ server:
     configuration:
      port: 35729
      path: webapp
+

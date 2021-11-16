@@ -1,0 +1,30 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZMM_DEPO_SAYIM_SRV" xml:lang="tr" sap:schema-version="1">
+			<EntityType Name="MalzemeListesi" sap:content-version="1">
+				<Key><PropertyRef Name="MalzemeNumarasi"/></Key><Property Name="Pareto" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Pareto" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ParetoVal" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Pareto Değeri"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Group" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Grup" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Sayac" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Sayı" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SayimKullanici" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Sayım Kullanıcı adı"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MalzemeNumarasi" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Malzeme"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MalzemeTanimi" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Tanım" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="UretimYeri" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Üretim yeri"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DepoYeri" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Depo yeri" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Stok1" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Kullanımı tahditsiz, değerlenmiş stok"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OlcuBirimi" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Temel ölçü brm."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SayimMiktar" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Sayım Miktarı" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ToplamStok1" Type="Edm.Decimal" Precision="13" Scale="2" sap:unicode="false" sap:label="Değerlenmiş toplam stok değeri"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ParaBirimi" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Para birimi"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Stok2" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Kullanımı tahditsiz, değerlenmiş stok"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ToplamStok2" Type="Edm.Decimal" Precision="13" Scale="2" sap:unicode="false" sap:label="SAFDEG" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DepoBlok" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Gösterge" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SayimTarihi" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Tarih" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SayimSecimi" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Gösterge" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Onay1" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Gösterge" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="ZMM_DEPO_SAYIM_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="MalzemeListesiSet" EntityType="ZMM_DEPO_SAYIM_SRV.MalzemeListesi" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZMM_DEPO_SAYIM_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZMM_DEPO_SAYIM_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"comisuzu./zmm_sayim_yonet/controller/Main.controller"
+	"com/isuzi/zmm_sayim_yonet/controller/Main.controller"
 ], function (Controller) {
 	"use strict";
 

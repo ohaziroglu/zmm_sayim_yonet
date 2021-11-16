@@ -5,7 +5,7 @@ sap.ui.getCore().attachInit(function () {
 	"use strict";
 
 	sap.ui.require([
-		"comisuzu./zmm_sayim_yonet/test/unit/AllTests"
+		"com/isuzi/zmm_sayim_yonet/test/unit/AllTests"
 	], function () {
 		QUnit.start();
 	});

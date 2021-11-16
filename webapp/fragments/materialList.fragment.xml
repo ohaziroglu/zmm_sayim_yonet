@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>MATERIAL_SEARCH}" class="sapUiPopupWithPadding" contentWidth="50%" contentHeight="60%">
+		<Page showHeader="false">
+			<subHeader>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<SearchField id="id_MaterialSearchField" search="handleSearchMaterial" width="auto" value="{mainModel>/materialSearchField}"/>
+				</OverflowToolbar>
+			</subHeader>
+			<List id="id_materialList" items="{mainModel>/filterMaterial}"
+				itemPress="handleValueHelpClose" mode="SingleSelect" growing="true" growingThreshold="50" includeItemInSelection="true">
+				<StandardListItem type="Active" info="{i18n>DEPO} : {mainModel>DepoYeri}" title="{mainModel>MalzemeNumarasi}" description="{mainModel>MalzemeTanimi}"/>
+			</List>
+		</Page>
+		<buttons>
+			<Button text="{i18n>ADD}" press="onAddMaterialList" type="Accept"/>
+			<Button text="{i18n>CLOSE}" press="onAddMaterialListClose" type="Transparent"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
